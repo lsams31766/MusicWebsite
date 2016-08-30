@@ -1,0 +1,10 @@
+{% if all_songs %}
+    <h3>Here all all my Songs</h3>
+    <ul>
+        {% for song in all_songs %}
+        <li><a href="/music/{{ song.id }}">{{ song.song_name }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <h3>You Don't have any Songs</h3>
+{% endif %}
