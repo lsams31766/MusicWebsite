@@ -1,1 +1,9 @@
-{{ song }}
+
+<h1>{{ song.song_name }}</h1>
+<h3>{{ song.artist }}</h3>
+
+<ul>
+    {% for song_file in song.songfile_set.all %}
+    <li>{{ song_file.link_location }} - {{ song_file.link_type }} </li>
+    {% endfor %}
+</ul>
