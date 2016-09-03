@@ -15,3 +15,10 @@ class SongFile(models.Model):
 
    def __str__(self):
       return self.link_location
+  
+  
+class DropBoxAccount(models.Model):
+    app_key = models.CharField(max_length=100)
+    app_secret = models.CharField(max_length=100)
+    access_token = models.CharField(max_length=100)
+    

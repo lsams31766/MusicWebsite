@@ -61,7 +61,7 @@
     <h3>Here are all my Songs</h3>
     <ul>
         {% for song in all_songs %}
-        <li><a href="/music/{{ song.id }}">{{ song.song_name }}</a></li>
+        <li>{{ song }}</li>
         {% endfor %}
     </ul>
 {% else %}
