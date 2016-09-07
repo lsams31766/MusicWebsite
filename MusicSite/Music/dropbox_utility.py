@@ -1,5 +1,5 @@
 #dropbox_utility,py
-from models import DropBoxAccount
+from models import DropBoxAccount, Song
 import dropbox
 from dropbox.client import DropboxClient
 
@@ -67,14 +67,23 @@ def GetFilesInDir(dir_name):
       f = item[0]
       if f.startswith(dir_name):
           file_list.append(f)
+          print f
    return file_list
 
-def GetTextFileContent(file_name):
+def GetTextFileContent(file_id):
    #return string representation of file stored on dropbox
-   dba = DropBoxAccount.objects.get(pk=1)
-   token = dba.access_token
-   client =  client = dropbox.client.DropboxClient(token)
-   f, metadata = client.get_file_and_metadata(file_name)
-   return str(f.read())
+   try:
+      song = Song.objects.get(pk=file_id)
+      file_name = song.file_name
+      print 'GetTextFileContent ' + file_name
+      dba = DropBoxAccount.objects.get(pk=1)
+      token = dba.access_token
+      print 'GetTextFileContent token ' + token
+      client =  client = dropbox.client.DropboxClient(token)
+      f, metadata = client.get_file_and_metadata(file_name)
+      return str(f.read())
+   except:
+      print 'GetTextFileContent ' + str(file_id) + ' Error'
+      return 'No Content'
 
    

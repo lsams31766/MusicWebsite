@@ -59,11 +59,28 @@
 
 {% if all_songs %}
     <h3>Here are all my Songs</h3>
+    
+<!--    
     <ul>
         {% for song in all_songs %}
         <li>{{ song }}</li>
         {% endfor %}
     </ul>
+-->
+    <table>
+        <tr>
+            <th>Song Name</th>
+            <th>Artist</th>
+            <th>Genre</th>
+        </tr>
+        {% for song in all_songs %}
+            <tr>
+                <td> <a href="/music/{{ song.id }}">{{ song.song_name }}</a> </td>
+                <td>{{ song.artist }}</td>
+                <td>{{ song.genre }}</td>
+            </tr>
+        {% endfor %}
+    </table>
 {% else %}
     <h3>You Don't have any Songs</h3>
 {% endif %}
